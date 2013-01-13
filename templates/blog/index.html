@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+{% load pagination_tags %}
+{% autopaginate posts 20 %}
+<head>
+    <link rel="stylesheet" type="text/css" href="/site_media/style.css">
+    <title>{{ blog.name }}</title>
+</head>
+<body>
+    <div id="wrapper">
+        {% include 'blog/header.html' %}
+        <div id="clear" style="height: 5px;border-bottom: dotted 1px;"></div>
+        <div id="wn" style="float: left;">
+            <img src="/site_media/images/wn.png"/>
+        </div>
+        <div id="content" style="width: 70%;margin-left: 10px;">
+            <table style="padding: 5px;">
+                {% for post in posts %}
+                    <tr><td width="25%">{{ forloop.counter }}.</td><td width="60%"><a href="/post/{{ post.id }}">{{ post.name }}</a></td><td>{{ post.pub_date }}</td></tr>
+                {% endfor %}
+            </table>
+            <br/>
+            {% paginate %}
+        </div>
+    {% include 'blog/footer.html' %}
+    </div>
+</body>
+</html>
