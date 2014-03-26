@@ -1,6 +1,6 @@
 # Django settings for skyblog project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -13,8 +13,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'skyblog',                      # Or path to database file if using sqlite3.
-        'USER': 'username',                      # Not used with sqlite3.
-        'PASSWORD': 'password',                  # Not used with sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': '1',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -68,7 +68,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'E:/djangodemo/skyblog/medias',
+    '/home/andy/km-workspace/skyblog/sky-blog/medias',
 )
 
 # List of finder classes that know how to find static files in
@@ -106,7 +106,7 @@ ROOT_URLCONF = 'skyblog.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'skyblog.wsgi.application'
 
-TEMPLATE_DIRS = ('E:/djangodemo/skyblog/templates',)
+TEMPLATE_DIRS = ('/home/andy/km-workspace/skyblog/sky-blog/templates',)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
