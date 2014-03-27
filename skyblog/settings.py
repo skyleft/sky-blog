@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'blog',
     'pagination',
+    'account',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
