@@ -6,10 +6,10 @@ import time
 from exceptions import Exception
 
 def index(request):
-    blog = Blog.objects.all()[0]
-    categorys = Category.objects.all()
-    posts = Post.objects.all()
-    return render_to_response('blog/index.html',{'blog':blog,'posts':posts,'categorys':categorys},context_instance=RequestContext(request))
+    #blog = Blog.objects.all()[0]
+    #categorys = Category.objects.all()
+    #posts = Post.objects.all()
+    return render_to_response('main/main.html',{},context_instance=RequestContext(request))
 
 def category(request,category_id_tmp):
     blog = Blog.objects.all()[0]
