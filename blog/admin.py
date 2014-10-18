@@ -1,6 +1,7 @@
 __author__ = 'Administrator'
 from models import Post,Category,Tag,Blog
 from django.contrib import admin
+import xadmin
 
 class BlogAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -14,6 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name','alias']
 
+xadmin.site.register(Post)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Tag,TagAdmin)

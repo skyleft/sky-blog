@@ -6,8 +6,17 @@ from django.views.static import serve
 from account import urls as accountUrls
 import settings
 admin.autodiscover()
+import xadmin
+xadmin.autodiscover()
+
+from xadmin.plugins import xversion
+xversion.register_models()
 
 urlpatterns = patterns('',
+    url(r'xadmin/', include(xadmin.site.urls)),
+)
+
+urlpatterns += patterns('',
     # Examples:
     # url(r'^$', 'skyblog.views.home', name='home'),
     # url(r'^skyblog/', include('skyblog.foo.urls')),
