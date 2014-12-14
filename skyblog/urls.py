@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.views.static import serve
 from account import urls as accountUrls
 import settings
-admin.autodiscover()
+#admin.autodiscover()
 import xadmin
 xadmin.autodiscover()
 
@@ -25,7 +25,6 @@ urlpatterns += patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^account/',include(accountUrls)),
     url(r'^$','blog.views.index'),
     url(r'^post/(?P<post_id>\d+)/$','blog.views.post'),

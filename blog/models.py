@@ -1,7 +1,9 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 class Blog(models.Model):
     name = models.CharField(max_length=300)
+    user = models.ForeignKey(User)
+    create_date = models.DateField()
 
     def __unicode__(self):
         return self.name
@@ -23,9 +25,11 @@ class Tag(models.Model):
 
 class Post(models.Model):
     name = models.CharField(max_length=300)
+    blog = models.ForeignKey(Blog)
     category = models.ForeignKey(Category)
     tags = models.ManyToManyField(Tag)
     content = models.TextField()
+    score = models.IntegerField(default=0)
     pub_date = models.DateField('pub_date')
 
     def __unicode__(self):

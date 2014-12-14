@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from django.shortcuts import render_to_response
 from models import Blog,Post,Category,Tag,Comment
 from django.shortcuts import get_object_or_404
@@ -6,10 +7,9 @@ import time
 from exceptions import Exception
 
 def index(request):
-    #blog = Blog.objects.all()[0]
-    #categorys = Category.objects.all()
-    #posts = Post.objects.all()
-    return render_to_response('main/main.html',{},context_instance=RequestContext(request))
+    #查找score前50的文章
+    posts = Post.objects.order_by('-score')[:50]
+    return render_to_response('main/main.html',{'posts':posts},context_instance=RequestContext(request))
 
 def category(request,category_id_tmp):
     blog = Blog.objects.all()[0]
