@@ -1,19 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="/site_media/style.css">
-    <title></title>
-</head>
-<body>
-<div id="wrapper">
-    {% include 'blog/header.html' %}
-    <div id="clear" style="height: 5px;"></div>
-    <div id="content" style=" width:100%;margin-bottom: 10px;border: dotted 1px #6495ed;padding: 8px;">
-        <h3>{{ post.name }}</h3>
-        <p style="margin-top: 10px;">{{ post.content }}</p>
-    </div>
-    <div id="comment" style="border: 1px dotted #6495ed ;position: relative;width: 100%;padding: 8px;">
+{% extends 'main/base.html' %}
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-md-9 column">
+            <h3>{{ post.name }}</h3>
+            <p style="margin-top: 10px;">{{ post.content }}</p>
+            <div id="comment" style="border: 1px dotted #6495ed ;position: relative;width: 100%;padding: 8px;">
         <table style="padding: 5px;">
             {% for comment in comments %}
                 <tr><td width="20%">{{ forloop.counter }}.</td><td>{{ comment.author }}说：</td><td>{{ comment.content }}</td></tr>
@@ -29,8 +20,10 @@
             </form>
         </div>
     </div>
-    <div id="foot_nav" style="margin: auto;width: 30%;"><a href="/">回到首页</a></div>
-    {% include 'blog/footer.html' %}
-</div>
-</body>
-</html>
+        </div>
+        <div class="col-md-3 column">
+            
+        </div>
+    </div>
+{% endblock %}
+        

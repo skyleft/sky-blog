@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 import time
 from exceptions import Exception
+from django.http import HttpResponse
+
 
 def index(request):
     #查找score前50的文章
@@ -40,3 +42,13 @@ def comment(request):
     comments = Comment.objects.filter(postref=postref_id)
     p = get_object_or_404(Post,pk=postref_id)
     return render_to_response('blog/single.html',{'blog':blog,'post':p,'categorys':categorys,'comments':comments},context_instance=RequestContext(request))
+
+def vote(request,post_id):
+    if request.user.is_authenticated():
+        post = Post.objects.get(id=post_id)
+        if post:
+            print post
+            post.score = post.score+1
+            post.save()
+        return HttpResponse('{status:1,message:"ok"}',content_type="application/json")
+    return HttpResponse('{status:0,message:"403"}',content_type="application/json")

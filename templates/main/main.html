@@ -24,9 +24,9 @@
                     {% for post in posts %}
                         <tr>
                             <td>{{forloop.counter}}</td>
-                            <td><a href="/blog/{{post.id}}">{{post.name}}</a></td>
+                            <td><a href="/post/{{post.id}}">{{post.name}}</a></td>
                             <td>{{post.pub_date}}</td>
-                            <td><a href="javascript:vote({{post.id}})">赞</a></td>
+                            <td><a href="javascript:vote({{post.id}})">赞</a>(<span id="score{{post.id}}">{{post.score}}</span>)</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -36,5 +36,18 @@
             
         </div>
     </div>
+    <script type="text/javascript">
+        function vote(id){
+            $.get('/post/vote/'+id,function(data){
+                //console.log(data);
+                data = eval("("+data+")");
+                if(data.status>0){
+                    $("#score"+id).text(parseInt($("#score"+id).text())+1);
+                }else{
+                    alert(data.message);
+                }
+            },'text');
+        }
+    </script>
 {% endblock %}
         
