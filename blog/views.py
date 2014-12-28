@@ -10,6 +10,8 @@ from django.http import HttpResponse
 
 def index(request):
     #查找score前50的文章
+    for metakey,meta in request.META.items():
+        print metakey,'=>',meta
     posts = Post.objects.order_by('-score')[:50]
     return render_to_response('main/main.html',{'posts':posts},context_instance=RequestContext(request))
 

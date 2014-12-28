@@ -3,12 +3,14 @@ from django.shortcuts import render,render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+author_group = Group.objects.get_by_natural_key("author");
 def reg(request):
 	if request.method == 'POST':
 		email = request.POST['email']
@@ -16,6 +18,7 @@ def reg(request):
 		username = email.split('@')[0]
 		user = User.objects.create_user(username=username,password=password,email=email)
 		user.is_staff = True
+		user.groups.add(author_group)
 		user.save()
 		user = authenticate(username=username, password=password)
 		#登陆用户
